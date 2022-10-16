@@ -25,7 +25,7 @@ def login_page(request):
 
         if user is not None:
             login(request, user)
-            return redirect("user-dashboard") 
+            return redirect("home") 
         else:
             messages.error(request, 'Email OR password is not correct')
 
@@ -55,13 +55,16 @@ def register_page(request):
                 messages.success(request, 'Congrats, account has been created successfully :) log in Now ')
                 return render(request,'login.html')
             else:
-                messages.error(request, 'An error occurred during registration')
-                return render(request,'register.html')
+                messages.error(request, 'An error occurred during registration, please verify if you have retyped the same password !')
+                return render(request,'signUp.html')
 
         messages.error(request, 'user with this email already exists , please use another email ')
-        return render(request,'register.html')
+        return render(request,'signUp.html')
 
-    return render(request, 'register.html')
+    return render(request, 'signUp.html')
+
+def forget_password(request):
+    return render(request,'forgetPassword.html')
 
 
 
